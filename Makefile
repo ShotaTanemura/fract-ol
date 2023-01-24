@@ -12,31 +12,37 @@
 
 NAME		=	fractol
 SRC			=	main.c \
-				main_fractol.c \
+				# main_fractol.c \
 
 LIBFTNAME	= 	libft
 LIBFTDIR 	= 	$(LIBFTNAME)
 LIBFT		= 	$(LIBFTDIR)/$(LIBFTNAME).a
 
+MINILIBNAME =	libmlx
+MINILIBDIR	=	./minilibx-linux
+MINILIB		=	$(MINILIBDIR)/$(MINILIBNAME).a
+MINILIBOS	=	$(MINILIBDIR)/$(MINILIBNAME)_Linux.a
+
 SRCDIR		= ./src
 OBJDIR		= ./obj
 INCSDIR   	= ./include
 
-INCS		= -I$(INCSDIR) -I$(LIBFTDIR)/include
+INCS		= -I$(INCSDIR) -I$(LIBFTDIR)/include -I$(MINILIBDIR)/
 RMFLAGS		= -r
 
 SRCS   		= $(addprefix $(SRCDIR)/, $(SRC))
 OBJS   		= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 
-CC 	   		= cc
-CFLAGS 		= -MMD -Wall -Wextra -Werror
+CC 	   		= gcc
+CFLAGS 		= -MMD -Wall -Wextra -Werror -Imlx_linux -lXext -lX11 -lm -lz
 RM			= rm
 
 
 .PHONY:	all clean fclean re
-all: $(LIBFT) $(NAME)
+all: $(LIBFT) $(MINILIB) $(NAME)
 clean:
 	$(MAKE) clean -C $(LIBFTDIR)
+	$(MAKE) clean -C $(MINILIBDIR)
 	-$(RM) $(RMFLAGS) $(OBJDIR)
 fclean: clean
 	$(MAKE) fclean -C $(LIBFTDIR)
@@ -44,10 +50,12 @@ fclean: clean
 re: fclean all
 
 $(NAME): $(OBJS)
-	$(CC) $(INCS) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(MINILIB) $(MINILIBOS) $(LIBFT) $(INCS) $(OBJS) -o $(NAME)
 $(LIBFT):
 	$(MAKE) -C $(LIBFTDIR)
+$(MINILIB):
+	$(MAKE) -C $(MINILIBDIR)
 $(OBJDIR):
 	@mkdir -p $@
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-	$(CC) $(CFLAGS) $(INCS) -o $@ -c $<
+	$(CC) $(MINILIB) $(MINILIBOS) $(LIBFT) $(CFLAGS) $(INCS) -o $@ -c $<

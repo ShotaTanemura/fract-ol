@@ -2,5 +2,8 @@
 	"cSpell.words": [
 		"fractol",
 		"shtanemu"
-	]
+	],
+	"files.associations": {
+		"mlx.h": "c"
+	}
 }
