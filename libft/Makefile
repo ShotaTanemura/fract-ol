@@ -75,7 +75,7 @@ OBJS		= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 DEPS		= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.d)))
 
 # Aliases of commands
-CC			= gcc
+CC			= cc
 AR			= ar
 RM			= rm
 

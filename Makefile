@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 NAME		=	fractol
-SRC			=	main.c \
+SRC			=	playground_2.c
+				# main.c \
 				# main_fractol.c \
 
 LIBFTNAME	= 	libft
@@ -19,7 +20,8 @@ LIBFTDIR 	= 	$(LIBFTNAME)
 LIBFT		= 	$(LIBFTDIR)/$(LIBFTNAME).a
 
 MINILIBNAME =	libmlx
-MINILIBDIR	=	./minilibx-linux
+MINILIBDIR	=	minilibx-linux
+MINILIB		=	$(MINILIBDIR)/$(MINILIBNAME).a
 MINILIB		=	$(MINILIBDIR)/$(MINILIBNAME).a
 MINILIBOS	=	$(MINILIBDIR)/$(MINILIBNAME)_Linux.a
 
@@ -33,24 +35,22 @@ RMFLAGS		= -r
 SRCS   		= $(addprefix $(SRCDIR)/, $(SRC))
 OBJS   		= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 
-CC 	   		= gcc
-CFLAGS 		= -MMD -Wall -Wextra -Werror -Imlx_linux -lXext -lX11 -lm -lz
-RM			= rm
-
+CC 	   		= cc
+CFLAGS 		= -MMD -Wall -Wextra -Werror
 
 .PHONY:	all clean fclean re
 all: $(LIBFT) $(MINILIB) $(NAME)
 clean:
 	$(MAKE) clean -C $(LIBFTDIR)
 	$(MAKE) clean -C $(MINILIBDIR)
-	-$(RM) $(RMFLAGS) $(OBJDIR)
+	$(RM) $(RMFLAGS) $(OBJDIR)
 fclean: clean
 	$(MAKE) fclean -C $(LIBFTDIR)
-	-$(RM) $(RMFLAGS) $(NAME)
+	$(RM) $(NAME)
 re: fclean all
 
 $(NAME): $(OBJS)
-	$(CC) $(MINILIB) $(MINILIBOS) $(LIBFT) $(INCS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(INCS) $(OBJS) $(MINILIB) $(MINILIBOS) $(LIBFT) -lXext -lX11 -lm -lz -o $(NAME)
 $(LIBFT):
 	$(MAKE) -C $(LIBFTDIR)
 $(MINILIB):
@@ -58,4 +58,4 @@ $(MINILIB):
 $(OBJDIR):
 	@mkdir -p $@
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-	$(CC) $(MINILIB) $(MINILIBOS) $(LIBFT) $(CFLAGS) $(INCS) -o $@ -c $<
+	$(CC) $(CFLAGS) $(INCS) -o $@ -c $<

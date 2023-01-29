@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
+# include "libft.h"
 # include "mlx.h"
 # include "mlx_int.h"
 //////////////////////////////////////
