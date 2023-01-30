@@ -12,51 +12,31 @@
 
 #include "fractol.h"
 
-char	**generate_param_sets(void)
+void	print_usage(void)
 {
-	char	**param_sets;
-
-	param_sets = (char **)malloc(sizeof(char *) * 3);
-	if (!param_sets)
-		exit(EXIT_FAILURE);
-	param_sets[0] = (char *)ft_calloc(ft_strlen("julia") + 1, sizeof(char));
-	if (!param_sets[0])
-	{
-		free(param_sets);
-		exit(EXIT_FAILURE);
-	}
-	param_sets[1] = (char *)ft_calloc(ft_strlen("mandelbrot") + 1, sizeof(char));
-	{
-		ft_free(free_matrix(param_sets));
-		exit(EXIT_FAILURE);
-	}
-	param_sets[0] = ft_strdup("julia");
-	param_sets[1] = ft_strdup("mandelbrot");
-	if (!param_sets[0] || !param_sets[1])
-		return (NULL);
-	param_sets[2] = NULL;
-	return (param_sets);
-
+	ft_putendl_fd("\n", 1);
+	ft_putendl_fd("Usage: ./fractol [fractal type]\n", 1);
+	ft_putendl_fd("Where:", 1);
+	ft_putstr_fd("[fractal type]: ", 1);
+	ft_putstr_fd("Specifies the type of fractal to generate. ", 1);
+	ft_putendl_fd("Must be one of the types in the list below.\n", 1);
+	ft_putendl_fd("		- julia", 1);
+	ft_putendl_fd("		- mandelbrot", 1);
+	ft_putendl_fd("\n", 1);
 }
 
 void	validate_args(int argc, char **argv)
 {
-	char	**param_sets;
-	size_t	i_param_sets;
 
-	param_sets = generate_param_sets();
 	if (2 == argc)
 	{
-		i_param_sets = 0;
-		while (param_sets[i_param_sets])
-		{
-			if (!ft_strcmp(argv[1], param_sets[i_param_sets]))
-				return (0);
-			i_param_sets++;
-		}
+		if (ft_strlen(argv[1]) == 5 && !ft_strncmp(argv[1], "julia", 5))
+			return ;
+		if (ft_strlen(argv[1]) == 10 && !ft_strncmp(argv[1], "mandelbrot", 10))
+			return ;
 	}
-	free_matrix()
-	print_usage(param_sets);
+	print_usage();
+	exit(EXIT_FAILURE);
 }
 
 void	main_fractol(int argc, char **argv)

@@ -11,8 +11,8 @@
 # **************************************************************************** #
 
 NAME		=	fractol
-SRC			=	playground_2.c
-				# main.c \
+SRC			=	main.c \
+				main_fractol.c \
 				# main_fractol.c \
 
 LIBFTNAME	= 	libft

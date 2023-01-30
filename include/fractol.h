@@ -18,10 +18,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
+# include <stdbool.h>
 # include "libft.h"
 # include "mlx.h"
 # include "mlx_int.h"
 //////////////////////////////////////
 //////////////////////////////////////
+void	main_fractol(int argc, char **argv);
 //////////////////////////////////////
 #endif
