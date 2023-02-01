@@ -65,7 +65,7 @@ while (x < "width of window")
             zk = calculate_zk_plus_one(zk, c);
             if (is_diverged(zk_plus_one))
             {
-                draw_pixel(x, y, iterations, max_iterations);
+                draw_pixel(x, y, iterations, max_iterations); // not defined yet
                 break ;
             }
             iterations++;
