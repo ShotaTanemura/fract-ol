@@ -1,15 +1,16 @@
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-# include <stdbool.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   complex.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/02 23:07:00 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/02/03 03:08:30 by shtanemu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-typedef struct  s_complex
-{
-    double  real;
-    double  imag;
-}   t_complex;
+#include "fractol.h"
 
 t_complex   mul_complex(t_complex c1, t_complex c2)
 {
@@ -34,62 +35,11 @@ double   abs_complex(t_complex c)
     return (sqrt(pow(c.real, 2) + pow(c.imag, 2)));
 }
 
-t_complex   create_complex_from_int(int x, int y)
+t_complex   create_complex_from_int(double x, double y)
 {
     t_complex   complex;
 
     complex.real = x;
     complex.imag = y;
     return (complex);
-}
-
-t_complex   calculate_zk_plus_one(t_complex zk, t_complex c)
-{
-    return add_complex(mul_complex(zk, zk), c);
-}
-
-bool    is_diverged(t_complex zk_plus_one)
-{
-    return (abs_complex(zk_plus_one) > 2);
-}
-
-void    draw_pixel(int x, int y, size_t iterations, size_t max_iterations)
-{
-    printf("x: %d\n", x);
-    printf("y: %d\n", y);
-    printf("iterations: %ld\n", iterations);
-}
-
-int main(void)
-{
-    size_t  iterations = 0;
-    size_t  max_iterations = 1000;
-    int     x;
-    int     y;
-    t_complex zk;
-    t_complex c;
-
-    x = -1;
-    while (x < 1000)
-    {
-        y = -1;
-        while (y < 1000)
-        {
-            zk.imag = 0;
-            zk.real = 0;
-            c = create_complex_from_int(x, y);
-            while (iterations < max_iterations)
-            {
-                zk = calculate_zk_plus_one(zk, c);
-                if (is_diverged(zk))
-                {
-                    draw_pixel(x, y, iterations, max_iterations); // not defined yet
-                    break ;
-                }
-                iterations++;
-            }
-            y++;
-        }
-        x++;
-    }
 }

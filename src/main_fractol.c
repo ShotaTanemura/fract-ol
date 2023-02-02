@@ -25,21 +25,35 @@ void	print_usage(void)
 	ft_putendl_fd("\n", 1);
 }
 
-void	validate_args(int argc, char **argv)
+bool	is_julia_set(char *arg)
 {
+	return ((bool)(ft_strlen(arg) == 5 && !ft_strncmp(arg, "julia", 5)));
+}
 
+bool	is_mandelbrot_set(char *arg)
+{
+	return ((bool)(ft_strlen(arg) == 10 && !ft_strncmp(arg, "mandelbrot", 10)));
+}
+
+bool	validate_args(int argc, char **argv)
+{
 	if (2 == argc)
 	{
-		if (ft_strlen(argv[1]) == 5 && !ft_strncmp(argv[1], "julia", 5))
-			return ;
-		if (ft_strlen(argv[1]) == 10 && !ft_strncmp(argv[1], "mandelbrot", 10))
-			return ;
+		if (is_julia_set(argv[1]) || is_mandelbrot_set(argv[1]))
+			return (true);
 	}
 	print_usage();
-	exit(EXIT_FAILURE);
+	return (false);
 }
 
 void	main_fractol(int argc, char **argv)
 {
-	validate_args(argc, argv);
+	if (validate_args(argc, argv))
+	{
+		if (is_julia_set(argv[1]))
+			return ;
+			// draw_julia();
+		else if (is_mandelbrot_set(argv[1]))
+			draw_mandelbrot();
+	}
 }
