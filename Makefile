@@ -11,9 +11,10 @@
 # **************************************************************************** #
 
 NAME		=	fractol
-SRC			=	main.c \
+SRC			=	complex.c
+
+# SRC			=	main.c \
 				main_fractol.c \
-				# main_fractol.c \
 
 LIBFTNAME	= 	libft
 LIBFTDIR 	= 	$(LIBFTNAME)

@@ -23,6 +23,11 @@
 # include "mlx.h"
 # include "mlx_int.h"
 //////////////////////////////////////
+typedef struct  s_complex
+{
+    double  real;
+    double  imag;
+}   t_complex;
 //////////////////////////////////////
 void	main_fractol(int argc, char **argv);
 //////////////////////////////////////
