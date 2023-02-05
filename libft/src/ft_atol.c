@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 12:04:41 by shtanemu          #+#    #+#             */
-/*   Updated: 2022/10/12 12:04:41 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/02/05 03:43:21 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/02/05 03:43:21 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ static int	check_num(long long num, int neg, char str)
 {
 	if (LONG_MAX / 10 < num * neg && str != '\0')
 		return (1);
-	if (LONG_MAX / 10 == num * neg && str > '7')
+	if (LONG_MAX / 10 == num * neg && str > LONG_MAX % 10 + '0')
 		return (1);
 	if (LONG_MIN / 10 > num * neg && str != '\0')
 		return (-1);
-	if (LONG_MIN / 10 == num * neg && str > '8')
+	if (LONG_MIN / 10 == num * neg && str > (LONG_MIN % 10 * -1) + '0')
 		return (-1);
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atol(const char *str)
 {
 	long long	num;
 	int			neg;

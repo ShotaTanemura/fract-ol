@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coordinate.c                                       :+:      :+:    :+:   */
+/*   caliculate_zk.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 03:24:33 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/05 19:07:03 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/02/05 20:30:19 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/02/05 20:44:36 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	set_horizontal(t_coord *coord, double scale_factor)
+t_complex	calculate_zk_plus_one(t_complex zk, t_complex c)
 {
-	coord->x = 0;
-	coord->a = coord->x - 325 * scale_factor;
+	return (add_complex(mul_complex(zk, zk), c));
 }
 
-void	set_vertical(t_coord *coord, double scale_factor)
+bool	is_diverged(t_complex zk_plus_one)
 {
-	coord->y = 0;
-	coord->b = coord->y - 310 * scale_factor;
-}
-
-void	increment_vertical(t_coord *coord)
-{
-	coord->y++;
-	coord->b += coord->complex_unit;
-}
-
-void	increment_horizontal(t_coord *coord)
-{
-	coord->x++;
-	coord->a += coord->complex_unit;
+	return (abs_complex(zk_plus_one) > 2.00);
 }

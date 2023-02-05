@@ -13,10 +13,15 @@
 NAME		=	fractol
 SRC			=	main.c \
 				main_fractol.c \
+				validate_args.c \
 				complex.c \
 				coordinate.c \
+				pixel_color_gen.c \
+				caliculate_zk.c \
 				draw_mandelbrot.c \
+				draw_julia.c \
 				main_mandelbrot.c \
+				main_julia.c \
 
 
 LIBFTNAME	= 	libft
@@ -42,7 +47,7 @@ SRCS   		= $(addprefix $(SRCDIR)/, $(SRC))
 OBJS   		= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 
 CC 	   		= cc
-CFLAGS 		= -MMD -Wall -Wextra -Werror
+CFLAGS 		= -MMD -Wall -Wextra -Werror -fsanitize=address
 
 .PHONY:	all clean fclean re
 all: $(LIBFT) $(NAME)
@@ -61,7 +66,7 @@ re: fclean all
 
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -L/usr/X11R6/lib  -lmlx -lX11 -lXext -framework OpenGL -framework AppKit $(INCS) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) -L/usr/X11R6/lib -lmlx -lX11 -lXext -framework OpenGL -framework AppKit $(INCS) $(OBJS) $(LIBFT) -o $(NAME)
 #	$(CC) $(CFLAGS) $(INCS) $(OBJS) $(MINILIB) $(MINILIBOS) $(LIBFT) -lXext -lX11 -lm -lz -o $(NAME)
 $(LIBFT):
 	$(MAKE) -C $(LIBFTDIR)
