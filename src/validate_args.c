@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 19:55:29 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/05 19:55:57 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/02/07 02:53:43 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_usage(void)
 	ft_putstr_fd("       ", 1);
 	ft_putendl_fd("./fractol julia [seed1] [seed2]", 1);
 	ft_putstr_fd("       - you can pass only natural number ", 1);
-	ft_putstr_fd("between 0 and 1500 without sign.", 1);
+	ft_putstr_fd("between 0 and 3000 without sign.", 1);
 	ft_putendl_fd("\n", 1);
 }
 
@@ -45,7 +45,9 @@ bool	validate_julia_options(char **argv)
 			return (false);
 		i++;
 	}
-	if (ft_atol(argv[2]) > 1500 || ft_atol(argv[3]) > 1500)
+	if (ft_atol(argv[2]) > 3000 || ft_atol(argv[3]) > 3000)
+		return (false);
+	if (0 > ft_atol(argv[2]) || 0 > ft_atol(argv[3]))
 		return (false);
 	return (true);
 }

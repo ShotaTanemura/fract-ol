@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   caliculate_zk.c                                    :+:      :+:    :+:   */
+/*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/05 20:30:19 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/07 01:51:24 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/02/07 03:28:46 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/02/07 03:29:21 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_complex	calculate_zk_plus_one(t_complex zk, t_complex c)
+int	close_window(int keycode, t_vars *vars)
 {
-	return (add_complex(mul_complex(zk, zk), c));
+	if (keycode == 53)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+		exit(EXIT_SUCCESS);
+	}
+	return (0);
 }
 
-bool	is_diverged(t_complex zk_plus_one)
+int	exit_fractol(t_vars *vars)
 {
-	return (abs_complex(zk_plus_one) > 2.00);
+	mlx_destroy_window(vars->mlx, vars->win);
+	exit(EXIT_SUCCESS);
+	return (0);
 }

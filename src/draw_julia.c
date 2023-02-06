@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 02:42:06 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/05 20:22:55 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/02/07 03:29:30 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,6 @@ static int	scale_with_mouse_wheel(int keycode, int x, int y, t_vars *vars)
 	return (0);
 }
 
-static int	close_window(int keycode, t_vars *vars)
-{
-	if (keycode == 53)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		exit(EXIT_SUCCESS);
-	}
-	return (0);
-}
-
-static int	exit_fractol(t_vars *vars)
-{
-	mlx_destroy_window(vars->mlx, vars->win);
-	exit(EXIT_SUCCESS);
-	return (0);
-}
-
 void	set_params(t_vars *vars, double seed1, double seed2)
 {
 	vars->param1 = -1.5;
@@ -52,10 +35,10 @@ void	set_params(t_vars *vars, double seed1, double seed2)
 		vars->param1 += 0.001;
 		seed1--;
 	}
-	vars->param2 = -1.5;
+	vars->param2 = 1.5;
 	while (seed2)
 	{
-		vars->param2 += 0.001;
+		vars->param2 -= 0.001;
 		seed2--;
 	}
 }
@@ -71,8 +54,7 @@ void	draw_julia(long seed1, long seed2)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
 	&img.line_length, &img.endian);
 	vars.img = &img;
-	vars.scale_factor = 0.1;
-	vars.param1 = -1.5;
+	vars.scale_factor = 0.01;
 	set_params(&vars, seed1, seed2);
 	main_julia(&vars, vars.scale_factor);
 	mlx_mouse_hook(vars.win, scale_with_mouse_wheel, &vars);

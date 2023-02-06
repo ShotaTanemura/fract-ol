@@ -6,46 +6,24 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 23:40:08 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/05 19:48:01 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/02/07 03:32:54 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	scale_with_mouse_wheel(int keycode, int x, int y, t_vars *vars)
+static int	scale_with_mouse_wheel(int keycode, int x, int y, t_vars *vars)
 {
 	(void)x;
 	(void)y;
 	if (keycode == 4 || keycode == 5)
 	{
 		if (keycode == 4)
-		{
 			vars->scale_factor -= (vars->scale_factor * 0.1);
-			main_mandelbrot(vars, vars->scale_factor);
-		}
 		else
-		{
 			vars->scale_factor += (vars->scale_factor * 0.1);
-			main_mandelbrot(vars, vars->scale_factor);
-		}
+		main_mandelbrot(vars, vars->scale_factor);
 	}
-	return (0);
-}
-
-int	close_window(int keycode, t_vars *vars)
-{
-	if (keycode == 53)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		exit(EXIT_SUCCESS);
-	}
-	return (0);
-}
-
-int	exit_fractol(t_vars *vars)
-{
-	mlx_destroy_window(vars->mlx, vars->win);
-	exit(EXIT_SUCCESS);
 	return (0);
 }
 

@@ -31,7 +31,7 @@
 # endif
 
 # ifndef MAX_ITER
-#  define MAX_ITER 30
+#  define MAX_ITER 100
 # endif
 //////////////////////////////////////
 typedef struct s_complex
@@ -84,6 +84,11 @@ t_complex	calculate_zk_plus_one(t_complex zk, t_complex c);
 bool		is_diverged(t_complex zk_plus_one);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			create_trgb(int t, int r, int g, int b);
+//////////////////////////////////////
+// window_management.c
+//////////////////////////////////////
+int			close_window(int keycode, t_vars *vars);
+int			exit_fractol(t_vars *vars);
 //////////////////////////////////////
 // complex.c
 //////////////////////////////////////

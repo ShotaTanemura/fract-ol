@@ -16,6 +16,7 @@ SRC			=	main.c \
 				validate_args.c \
 				complex.c \
 				coordinate.c \
+				window_management.c \
 				pixel_color_gen.c \
 				caliculate_zk.c \
 				draw_mandelbrot.c \
