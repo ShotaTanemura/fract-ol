@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   complex.c                                          :+:      :+:    :+:   */
+/*   complex_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 23:07:00 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/07 15:36:35 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/02/07 15:02:20 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/02/07 15:31:03 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 t_complex	mul_complex(t_complex c1, t_complex c2)
 {
@@ -33,6 +33,15 @@ t_complex	add_complex(t_complex c1, t_complex c2)
 double	abs_complex(t_complex c)
 {
 	return (sqrt(pow(c.real, 2) + pow(c.imag, 2)));
+}
+
+t_complex	abs_complex_burningship(t_complex c)
+{
+	t_complex	ret_c;
+
+	ret_c.real = sqrt(pow(c.real, 2));
+	ret_c.imag = sqrt(pow(c.imag, 2));
+	return (ret_c);
 }
 
 t_complex	create_complex(double a, double b)

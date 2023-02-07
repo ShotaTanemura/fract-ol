@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_management.c                                :+:      :+:    :+:   */
+/*   pixel_color_gen_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 03:28:46 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/07 15:46:36 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/02/07 15:03:27 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/02/07 15:31:03 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
-int	key_events(int keycode, t_vars *vars)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	if (keycode == 53)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		exit(EXIT_SUCCESS);
-	}
-	return (0);
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *) dst = color;
 }
 
-int	exit_fractol(t_vars *vars)
+int	create_trgb(int t, int r, int g, int b)
 {
-	mlx_destroy_window(vars->mlx, vars->win);
-	exit(EXIT_SUCCESS);
-	return (0);
+	return (t << 24 | r << 16 | g << 8 | b);
 }

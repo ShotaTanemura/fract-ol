@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_args.c                                    :+:      :+:    :+:   */
+/*   validate_args_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/05 19:55:29 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/07 15:46:22 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/02/07 15:03:32 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/02/07 15:31:03 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 void	print_usage(void)
 {
@@ -20,6 +20,8 @@ void	print_usage(void)
 	ft_putendl_fd("./fractol julia [seed1] [seed2]", 1);
 	ft_putstr_fd("       - you can pass only natural number ", 1);
 	ft_putstr_fd("between 0 and 3000 without sign.\n", 1);
+	ft_putstr_fd("       ", 1);
+	ft_putendl_fd("./fractol burningship", 1);
 	ft_putendl_fd("\n", 1);
 }
 
@@ -55,6 +57,8 @@ bool	validate_julia_options(char **argv)
 bool	validate_args(int argc, char **argv)
 {
 	if (is_mandelbrot_set(argc, argv[1]))
+		return (true);
+	if (is_burningship_set(argc, argv[1]))
 		return (true);
 	if (is_julia_set(argc, argv))
 		return (true);

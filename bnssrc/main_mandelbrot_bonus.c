@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_mandelbrot.c                                  :+:      :+:    :+:   */
+/*   main_mandelbrot_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 23:10:10 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/07 15:43:49 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/02/07 15:03:22 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/02/07 15:31:03 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 static void	put_complex(t_coord *coord, t_vars *vars, t_complex zk)
 {
@@ -26,7 +26,7 @@ static void	put_complex(t_coord *coord, t_vars *vars, t_complex zk)
 		if (is_diverged(zk))
 		{
 			vars->img->trgb = create_trgb(0, 0, iterations * 3, \
-											iterations);
+											vars->color_shift);
 			break ;
 		}
 		iterations++;

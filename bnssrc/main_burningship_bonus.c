@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_mandelbrot.c                                  :+:      :+:    :+:   */
+/*   main_burningship_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 23:10:10 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/07 15:43:49 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/02/07 15:02:57 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/02/07 15:31:03 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 static void	put_complex(t_coord *coord, t_vars *vars, t_complex zk)
 {
@@ -20,13 +20,13 @@ static void	put_complex(t_coord *coord, t_vars *vars, t_complex zk)
 	c = create_complex(coord->a, coord->b);
 	iterations = 0;
 	vars->img->trgb = create_trgb(0, 0, 0, 0);
-	while (iterations < MAX_ITER)
+	while (iterations < MAX_ITER_BS)
 	{
-		zk = calculate_zk_plus_one(zk, c);
+		zk = calculate_zk_plus_one_burningship(zk, c);
 		if (is_diverged(zk))
 		{
-			vars->img->trgb = create_trgb(0, 0, iterations * 3, \
-											iterations);
+			vars->img->trgb = create_trgb(0, 0, \
+									iterations * 4, vars->color_shift);
 			break ;
 		}
 		iterations++;
@@ -34,7 +34,7 @@ static void	put_complex(t_coord *coord, t_vars *vars, t_complex zk)
 	my_mlx_pixel_put(vars->img, coord->x, coord->y, vars->img->trgb);
 }
 
-void	main_mandelbrot(t_vars	*vars, double scale_factor)
+void	main_burningship(t_vars	*vars, double scale_factor)
 {
 	t_coord		coord;
 	t_complex	zk;

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_julia.c                                       :+:      :+:    :+:   */
+/*   draw_julia_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/05 02:42:06 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/07 15:40:26 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/02/07 15:02:30 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/02/07 18:40:00 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 static int	scale_with_mouse_wheel(int keycode, int x, int y, t_vars *vars)
 {
@@ -56,6 +56,8 @@ void	draw_julia(int argc, char **argv, long seed1, long seed2)
 	vars.img = &img;
 	vars.argv = argv;
 	vars.argc = argc;
+	vars.move_x = 0.0;
+	vars.move_y = 0.0;
 	vars.scale_factor = 0.01;
 	set_params(&vars, seed1, seed2);
 	main_julia(&vars, vars.scale_factor);

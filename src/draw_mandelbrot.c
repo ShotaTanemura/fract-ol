@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 23:40:08 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/07 03:32:54 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:41:05 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	scale_with_mouse_wheel(int keycode, int x, int y, t_vars *vars)
 	return (0);
 }
 
-void	draw_mandelbrot(void)
+void	draw_mandelbrot(int argc, char **argv)
 {
 	t_vars	vars;
 	t_data	img;
@@ -38,10 +38,12 @@ void	draw_mandelbrot(void)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
 	&img.line_length, &img.endian);
 	vars.img = &img;
+	vars.argv = argv;
+	vars.argc = argc;
 	vars.scale_factor = 0.1;
-	main_mandelbrot(&vars, vars.scale_factor);
 	mlx_mouse_hook(vars.win, scale_with_mouse_wheel, &vars);
-	mlx_key_hook(vars.win, close_window, &vars);
+	mlx_key_hook(vars.win, key_events, &vars);
 	mlx_hook(vars.win, 17, 0, exit_fractol, &vars);
+	main_mandelbrot(&vars, vars.scale_factor);
 	mlx_loop(vars.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 11:31:20 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/07 03:03:51 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:42:39 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	main_julia(t_vars *vars, double scale_factor)
 {
 	t_coord		coord;
 
-	set_horizontal(&coord, vars->scale_factor);
+	set_horizontal(&coord, vars);
 	coord.complex_unit = scale_factor;
 	while (coord.x < WIN_WIDTH)
 	{
-		set_vertical(&coord, vars->scale_factor);
+		set_vertical(&coord, vars);
 		while (coord.y < WIN_HEIGHT)
 		{
 			put_complex(&coord, vars);

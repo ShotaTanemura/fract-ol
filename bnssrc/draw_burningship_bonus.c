@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_julia.c                                       :+:      :+:    :+:   */
+/*   draw_burningship_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/05 02:42:06 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/07 15:40:26 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/02/07 14:13:40 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/02/07 18:39:48 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 static int	scale_with_mouse_wheel(int keycode, int x, int y, t_vars *vars)
 {
@@ -22,28 +22,12 @@ static int	scale_with_mouse_wheel(int keycode, int x, int y, t_vars *vars)
 			vars->scale_factor -= (vars->scale_factor * 0.1);
 		else
 			vars->scale_factor += (vars->scale_factor * 0.1);
-		main_julia(vars, vars->scale_factor);
+		main_burningship(vars, vars->scale_factor);
 	}
 	return (0);
 }
 
-void	set_params(t_vars *vars, double seed1, double seed2)
-{
-	vars->param1 = -1.5;
-	while (seed1)
-	{
-		vars->param1 += 0.001;
-		seed1--;
-	}
-	vars->param2 = 1.5;
-	while (seed2)
-	{
-		vars->param2 -= 0.001;
-		seed2--;
-	}
-}
-
-void	draw_julia(int argc, char **argv, long seed1, long seed2)
+void	draw_burningship(int argc, char **argv)
 {
 	t_vars	vars;
 	t_data	img;
@@ -56,9 +40,10 @@ void	draw_julia(int argc, char **argv, long seed1, long seed2)
 	vars.img = &img;
 	vars.argv = argv;
 	vars.argc = argc;
+	vars.move_x = 0.0;
+	vars.move_y = 0.0;
 	vars.scale_factor = 0.01;
-	set_params(&vars, seed1, seed2);
-	main_julia(&vars, vars.scale_factor);
+	main_burningship(&vars, vars.scale_factor);
 	mlx_mouse_hook(vars.win, scale_with_mouse_wheel, &vars);
 	mlx_key_hook(vars.win, key_events, &vars);
 	mlx_hook(vars.win, 17, 0, exit_fractol, &vars);

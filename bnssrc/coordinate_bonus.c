@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coordinate.c                                       :+:      :+:    :+:   */
+/*   coordinate_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 03:24:33 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/02/07 15:37:24 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/02/07 14:11:00 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/02/07 18:39:30 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 void	set_horizontal(t_coord *coord, t_vars *vars)
 {
 	coord->x = 0;
-	coord->a = coord->x -325 * vars->scale_factor;
+	coord->a = coord->x -325 * vars->scale_factor + \
+							vars->move_x * vars->scale_factor;
 }
 
 void	set_vertical(t_coord *coord, t_vars *vars)
 {
 	coord->y = 0;
-	coord->b = coord->y -310 * vars->scale_factor;
+	coord->b = coord->y -310 * vars->scale_factor + \
+							vars->move_y * vars->scale_factor;
 }
 
 void	increment_vertical(t_coord *coord)
